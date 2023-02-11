@@ -3,26 +3,18 @@
 
 const Footer = () => {
   return (
-    <>
-      <footer
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "center",
-          justifyContent: "center",
-          bottom: 0,
-          position: "fixed",
-          marginTop: "auto",
-          marginBottom: 3,
-          variant: "styles.footer",
-          width: "100vw",
-        }}
+    <footer
+      className="flex flex-wrap items-center justify-center bottom-0 fixed inset-x-0 h-16 mt-auto py-2 px-3 text-center text-lg shadow-lg"
+      style={{ backgroundColor: "rgba(0, 0, 0, 0.25)" }}
+    >
+      <div
+        className="mx-auto drop-shadow-lg"
+        style={{ fontSize: ".85rem" }}
       >
-        <div sx={{ mx: "0 auto" }} />
-        <div sx={{ p: 2, fontWeight: 600 }}>© 2023 Dustin Apodaca</div>
-      </footer>
-    </>
-  )
-}
+        © 2023 Dustin Apodaca
+      </div>
+    </footer>
+  );
+};
 
-export default Footer
+export default Footer;

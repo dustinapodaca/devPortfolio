@@ -12,7 +12,7 @@ import me from '../../assets/IMG_5163-2.jpg';
 const Main = () => {
   return (
     <>
-      <main
+      <div
         sx={{
           display: "flex",
           flexWrap: "wrap",
@@ -100,7 +100,7 @@ const Main = () => {
 
           </Card> */}
         </Box>
-      </main>
+      </div>
     </>
   );
 };
