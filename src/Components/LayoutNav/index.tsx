@@ -1,28 +1,47 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import iconTriangle from '../../assets/noun-triangle-3105557.svg';
+import { useRef } from 'react';
+import { motion, AnimatePresence, useCycle } from 'framer-motion';
+// import iconTriangle from '../../assets/noun-triangle-3105557.svg';
+
+const Path = (props: any) => (
+  <motion.path
+    fill="transparent"
+    strokeWidth="3"
+    stroke="hsl(0, 0%, 18%)"
+    strokeLinecap="round"
+    {...props}
+  />
+);
+
+const MenuToggle = ({ toggle }: any) => (
+  <button onClick={toggle} style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}>
+    <motion.svg width="23" height="23" viewBox="0 0 23 23">
+      <Path
+        variants={{
+          closed: { d: "M 2 2.5 L 20 2.5" },
+          open: { d: "M 3 16.5 L 17 2.5" },
+        }}
+      />
+      <Path
+        d="M 2 9.423 L 20 9.423"
+        variants={{
+          closed: { opacity: 1 },
+          open: { opacity: 0 },
+        }}
+        transition={{ duration: 0.1 }}
+      />
+      <Path
+        variants={{
+          closed: { d: "M 2 16.346 L 20 16.346" },
+          open: { d: "M 3 2.5 L 17 16.346" },
+        }}
+      />
+    </motion.svg>
+  </button>
+);
 
 const LayoutNav = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  // const sideBarVariants = {
-  //   open: {
-  //     x: 0,
-  //     transition: {
-  //       type: 'spring',
-  //       stiffness: 20,
-  //       damping: 30,
-  //     },
-  //   },
-  //   closed: {
-  //     x: '-100%',
-  //     transition: {
-  //       type: 'spring',
-  //       stiffness: 20,
-  //       damping: 30,
-  //     },
-  //   },
-  // };
+  const [isOpen, toggleOpen] = useCycle(false, true);
+  const containerRef = useRef(null);
 
   const sidebarVariants = {
     open: {
@@ -43,14 +62,24 @@ const LayoutNav = () => {
     },
   };
 
-  const toggleVariants = {
-    open: {
-      rotate: 90,
-    },
-    closed: {
-      rotate: 0,
-    },
-  };
+  // const toggleVariants = {
+  //   open: {
+  //     rotate: 180,
+  //   },
+  //   closed: {
+  //     rotate: 0,
+  //   },
+  // };
+
+  // const toggleVariants = {
+  //   open: { rotate: 45 },
+  //   closed: { rotate: 0 },
+  // };
+
+  // const crossVariants = {
+  //   open: { opacity: 1 },
+  //   closed: { opacity: 0 },
+  // };
 
   return (
     <>
@@ -58,7 +87,7 @@ const LayoutNav = () => {
         className="flex justify-between items-center px-4 pt-7 pb-6"
         style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
       >
-        <div className='flex flex-row justify-between'>
+        <div className="flex flex-row justify-between">
           <motion.svg
             whileHover={{ rotate: 180 }}
             fill="#c0f"
@@ -81,18 +110,116 @@ const LayoutNav = () => {
             Portfolio
           </h2>
         </div>
-        <button
-          className="focus:outline-none"
-          onClick={() => setIsOpen(!isOpen)}
-        >
+        {/* <button className="focus:outline-none" onClick={() => toggleOpen()}>
           <motion.span
-            className="text-white text-4xl pr-4 leading-5"
+            className="text-white text-4xl pr-4"
             variants={toggleVariants}
             animate={isOpen ? "open" : "closed"}
+            transition={{ duration: 0.2 }}
           >
-            &#9776;
+            {isOpen ? (
+              <motion.svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                variants={crossVariants}
+                animate={isOpen ? "open" : "closed"}
+                transition={{ duration: 0.2 }}
+              >
+                <motion.path
+                  d="M18 6L6 18"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <motion.path
+                  d="M6 6L18 18"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </motion.svg>
+            ) : (
+              <motion.svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                variants={toggleVariants}
+                animate={isOpen ? "open" : "closed"}
+                transition={{ duration: 0.2 }}
+              >
+                <motion.path
+                  d="M4 6H20"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <motion.path
+                  d="M4 12H20"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <motion.path
+                  d="M4 18H20"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </motion.svg>
+            )}
           </motion.span>
+        </button> */}
+        <button className="focus:outline-none pr-3 pt-1" onClick={() => toggleOpen()}>
+          <motion.svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <motion.path
+              d="M 2 2.5 L 20 2.5"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              variants={{
+                open: { d: "M 3 16.5 L 17 2.5" },
+              }}
+              animate={isOpen ? "open" : "closed"}
+              transition={{ duration: 0.2 }}
+            />
+            <motion.path
+              d="M 2 9.423 L 20 9.423"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              variants={{
+                closed: { opacity: 1 },
+                open: { opacity: 0 },
+              }}
+              animate={isOpen ? "open" : "closed"}
+              transition={{ duration: 0.2 }}
+            />
+            <motion.path
+              d="M 2 16.346 L 20 16.346"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              variants={{
+                open: { d: "M 3 2.5 L 17 16.346" },
+              }}
+              animate={isOpen ? "open" : "closed"}
+              transition={{ duration: 0.2 }}
+            />
+          </motion.svg>
         </button>
+
+        {/* <MenuToggle toggle={() => toggleOpen()} /> */}
       </div>
       <AnimatePresence>
         {isOpen && (
@@ -106,12 +233,13 @@ const LayoutNav = () => {
             >
               <p className="px-4 py-2 w-screen">Home</p>
             </motion.nav> */}
-            <motion.div
+            <motion.nav
               className="flex justify-evenly pb-4 items-center w-full shadow-lg"
               style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
               variants={sidebarVariants}
               initial="closed"
               animate={isOpen ? "open" : "closed"}
+              ref={containerRef}
               exit="closed"
             >
               <motion.button
@@ -143,7 +271,7 @@ const LayoutNav = () => {
               >
                 Contact
               </motion.button>
-            </motion.div>
+            </motion.nav>
           </>
         )}
       </AnimatePresence>
@@ -184,8 +312,3 @@ export default LayoutNav;
 //     </>
 //   );
 // };
-
-
-            // <p className="px-4 py-2">About</p>
-            // <p className="px-4 py-2">Projects</p>
-            // <p className="px-4 py-2">Contact</p>
