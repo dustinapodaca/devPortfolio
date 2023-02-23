@@ -12,55 +12,31 @@ const Path = (props: any) => (
   />
 );
 
-const MenuToggle = ({ toggle }: any) => (
-  <button onClick={toggle} style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}>
-    <motion.svg width="23" height="23" viewBox="0 0 23 23">
-      <Path
-        variants={{
-          closed: { d: "M 2 2.5 L 20 2.5" },
-          open: { d: "M 3 16.5 L 17 2.5" },
-        }}
-      />
-      <Path
-        d="M 2 9.423 L 20 9.423"
-        variants={{
-          closed: { opacity: 1 },
-          open: { opacity: 0 },
-        }}
-        transition={{ duration: 0.1 }}
-      />
-      <Path
-        variants={{
-          closed: { d: "M 2 16.346 L 20 16.346" },
-          open: { d: "M 3 2.5 L 17 16.346" },
-        }}
-      />
-    </motion.svg>
-  </button>
-);
-
 const LayoutNav = () => {
   const [isOpen, toggleOpen] = useCycle(false, true);
   const containerRef = useRef(null);
 
-  const sidebarVariants = {
-    open: {
-      x: 0,
-      transition: {
-        type: "spring",
-        stiffness: 350,
-        damping: 20,
-      },
-    },
-    closed: {
-      x: "-100%",
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 20,
-      },
-    },
-  };
+  // const sidebarVariants = {
+  //   open: {
+  //     y: 0,
+  //     opacity: 1,
+  //     transition: {
+  //       type: "spring",
+  //       stiffness: 150,
+  //       damping: 20,
+  //       // delay: 0.2,
+  //     },
+  //   },
+  //   closed: {
+  //     y: "-100%",
+  //     opacity: 0,
+  //     transition: {
+  //       type: "spring",
+  //       stiffness: 200,
+  //       damping: 20,
+  //     },
+  //   },
+  // };
 
   // const toggleVariants = {
   //   open: {
@@ -84,7 +60,7 @@ const LayoutNav = () => {
   return (
     <>
       <div
-        className="flex justify-between items-center px-4 pt-7 pb-6"
+        className="flex justify-between items-center px-4 pt-7 pb-6 z-50"
         style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
       >
         <div className="flex flex-row justify-between">
@@ -110,71 +86,10 @@ const LayoutNav = () => {
             Portfolio
           </h2>
         </div>
-        {/* <button className="focus:outline-none" onClick={() => toggleOpen()}>
-          <motion.span
-            className="text-white text-4xl pr-4"
-            variants={toggleVariants}
-            animate={isOpen ? "open" : "closed"}
-            transition={{ duration: 0.2 }}
-          >
-            {isOpen ? (
-              <motion.svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                variants={crossVariants}
-                animate={isOpen ? "open" : "closed"}
-                transition={{ duration: 0.2 }}
-              >
-                <motion.path
-                  d="M18 6L6 18"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-                <motion.path
-                  d="M6 6L18 18"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </motion.svg>
-            ) : (
-              <motion.svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                variants={toggleVariants}
-                animate={isOpen ? "open" : "closed"}
-                transition={{ duration: 0.2 }}
-              >
-                <motion.path
-                  d="M4 6H20"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-                <motion.path
-                  d="M4 12H20"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-                <motion.path
-                  d="M4 18H20"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </motion.svg>
-            )}
-          </motion.span>
-        </button> */}
-        <button className="focus:outline-none pr-3 pt-1" onClick={() => toggleOpen()}>
+        <button
+          className="focus:outline-none pr-3 pt-1"
+          onClick={() => toggleOpen()}
+        >
           <motion.svg
             width="24"
             height="24"
@@ -233,45 +148,161 @@ const LayoutNav = () => {
             >
               <p className="px-4 py-2 w-screen">Home</p>
             </motion.nav> */}
-            <motion.nav
-              className="flex justify-evenly pb-4 items-center w-full shadow-lg"
-              style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
-              variants={sidebarVariants}
-              initial="closed"
-              animate={isOpen ? "open" : "closed"}
-              ref={containerRef}
-              exit="closed"
-            >
-              <motion.button
-                className="text-white md:text-sm text-lg md:px-1 px-10 py-1 font-bold hover:drop-shadow-lg rounded-full"
-                whileHover={{ scale: [null, 1.4, 1.3] }}
+            <motion.div className="flex -z-10">
+              <motion.nav
+                className="flex justify-evenly pb-4 items-center w-full"
+                // style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
+                variants={{
+                  open: {
+                    y: 0,
+                    opacity: 1,
+                    transition: {
+                      type: "spring",
+                      stiffness: 150,
+                      damping: 20,
+                      delay: 0.1,
+                    },
+                  },
+                  closed: {
+                    y: "-80%",
+                    opacity: 0,
+                    transition: {
+                      type: "spring",
+                      stiffness: 200,
+                      damping: 20,
+                    },
+                  },
+                }}
                 transition={{ duration: 0.3 }}
-                // style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
+                initial="closed"
+                animate={isOpen ? "open" : "closed"}
+                ref={containerRef}
+                exit="closed"
               >
-                Home
-              </motion.button>
-              <motion.button
-                className="text-white md:text-sm text-lg md:px-1 px-10 py-1 font-bold hover:drop-shadow-lg rounded-full"
-                whileHover={{ scale: [null, 1.4, 1.3] }}
+                <motion.button
+                  className="text-white md:text-sm text-lg md:px-1 px-10 py-1 font-bold hover:drop-shadow-lg rounded-full"
+                  whileHover={{ scale: [null, 1.4, 1.3] }}
+                  transition={{ duration: 0.3 }}
+                  // style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
+                >
+                  Home
+                </motion.button>
+              </motion.nav>
+              <motion.nav
+                className="flex justify-evenly pb-4 items-center w-full"
+                // style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
+                variants={{
+                  open: {
+                    y: 0,
+                    opacity: 1,
+                    transition: {
+                      type: "spring",
+                      stiffness: 150,
+                      damping: 20,
+                      delay: 0.2,
+                    },
+                  },
+                  closed: {
+                    y: "-80%",
+                    opacity: 0,
+                    transition: {
+                      type: "spring",
+                      stiffness: 200,
+                      damping: 20,
+                    },
+                  },
+                }}
                 transition={{ duration: 0.3 }}
+                initial="closed"
+                animate={isOpen ? "open" : "closed"}
+                ref={containerRef}
+                exit="closed"
               >
-                About
-              </motion.button>
-              <motion.button
-                className="text-white md:text-sm text-lg md:px-1 px-10 py-1 font-bold hover:drop-shadow-lg rounded-full"
-                whileHover={{ scale: [null, 1.4, 1.3] }}
+                <motion.button
+                  className="text-white md:text-sm text-lg md:px-1 px-10 py-1 font-bold hover:drop-shadow-lg rounded-full"
+                  whileHover={{ scale: [null, 1.4, 1.3] }}
+                  transition={{ duration: 0.3 }}
+                >
+                  About
+                </motion.button>
+              </motion.nav>
+              <motion.nav
+                className="flex justify-evenly pb-4 items-center w-full"
+                // style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
+                variants={{
+                  open: {
+                    y: 0,
+                    opacity: 1,
+                    transition: {
+                      type: "spring",
+                      stiffness: 150,
+                      damping: 20,
+                      delay: 0.3,
+                    },
+                  },
+                  closed: {
+                    y: "-80%",
+                    opacity: 0,
+                    transition: {
+                      type: "spring",
+                      stiffness: 200,
+                      damping: 20,
+                    },
+                  },
+                }}
                 transition={{ duration: 0.3 }}
+                initial="closed"
+                animate={isOpen ? "open" : "closed"}
+                ref={containerRef}
+                exit="closed"
               >
-                Projects
-              </motion.button>
-              <motion.button
-                className="text-white md:text-sm text-lg md:px-1 px-10 py-1 font-bold hover:drop-shadow-lg rounded-full"
-                whileHover={{ scale: [null, 1.4, 1.3] }}
+                <motion.button
+                  className="text-white md:text-sm text-lg md:px-1 px-10 py-1 font-bold hover:drop-shadow-lg rounded-full"
+                  whileHover={{ scale: [null, 1.4, 1.3] }}
+                  transition={{ duration: 0.3 }}
+                >
+                  Projects
+                </motion.button>
+              </motion.nav>
+              <motion.nav
+                className="flex justify-evenly pb-4 items-center w-full"
+                // style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
+                variants={{
+                  open: {
+                    y: 0,
+                    opacity: 1,
+                    transition: {
+                      type: "spring",
+                      stiffness: 150,
+                      damping: 20,
+                      delay: 0.4,
+                    },
+                  },
+                  closed: {
+                    y: "-80%",
+                    opacity: 0,
+                    transition: {
+                      type: "spring",
+                      stiffness: 200,
+                      damping: 20,
+                    },
+                  },
+                }}
                 transition={{ duration: 0.3 }}
+                initial="closed"
+                animate={isOpen ? "open" : "closed"}
+                ref={containerRef}
+                exit="closed"
               >
-                Contact
-              </motion.button>
-            </motion.nav>
+                <motion.button
+                  className="text-white md:text-sm text-lg md:px-1 px-10 py-1 font-bold hover:drop-shadow-lg rounded-full"
+                  whileHover={{ scale: [null, 1.4, 1.3] }}
+                  transition={{ duration: 0.3 }}
+                >
+                  Contact
+                </motion.button>
+              </motion.nav>
+            </motion.div>
           </>
         )}
       </AnimatePresence>
