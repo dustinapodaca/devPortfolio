@@ -139,19 +139,38 @@ const LayoutNav = () => {
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* <motion.nav
-              className="fixed z-50 bg-black text-white md:w-64 w-screen py-4"
-              variants={sidebarVariants}
+            <motion.div
+              className="-z-10 float-right rounded-b-lg p-4 px-6"
+              style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
+              variants={{
+                open: {
+                  x: 0,
+                  opacity: 1,
+                  transition: {
+                    type: "spring",
+                    stiffness: 150,
+                    damping: 20,
+                    delay: 0.1,
+                  },
+                },
+                closed: {
+                  x: "100%",
+                  opacity: 0,
+                  transition: {
+                    type: "spring",
+                    stiffness: 200,
+                    damping: 20,
+                  },
+                },
+              }}
+              transition={{ duration: 0.3 }}
               initial="closed"
-              animate="open"
+              animate={isOpen ? "open" : "closed"}
+              ref={containerRef}
               exit="closed"
             >
-              <p className="px-4 py-2 w-screen">Home</p>
-            </motion.nav> */}
-            <motion.div className="flex -z-10">
               <motion.nav
                 className="flex justify-evenly pb-4 items-center w-full"
-                // style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
                 variants={{
                   open: {
                     y: 0,
@@ -164,7 +183,7 @@ const LayoutNav = () => {
                     },
                   },
                   closed: {
-                    y: "-80%",
+                    y: "-70%",
                     opacity: 0,
                     transition: {
                       type: "spring",
@@ -180,17 +199,54 @@ const LayoutNav = () => {
                 exit="closed"
               >
                 <motion.button
-                  className="text-white md:text-sm text-lg md:px-1 px-10 py-1 font-bold hover:drop-shadow-lg rounded-full"
+                  className="text-white md:text-sm text-lg md:px-3 px-10 font-bold hover:drop-shadow-lg rounded-full"
                   whileHover={{ scale: [null, 1.4, 1.3] }}
                   transition={{ duration: 0.3 }}
-                  // style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
+                  // style={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
                 >
                   Home
                 </motion.button>
               </motion.nav>
               <motion.nav
-                className="flex justify-evenly pb-4 items-center w-full"
-                // style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
+                className="flex justify-evenly pb-4 items-center w-full pt-3"
+                variants={{
+                  open: {
+                    y: 0,
+                    opacity: 1,
+                    transition: {
+                      type: "spring",
+                      stiffness: 150,
+                      damping: 20,
+                      delay: 0.15,
+                    },
+                  },
+                  closed: {
+                    y: "-70%",
+                    opacity: 0,
+                    transition: {
+                      type: "spring",
+                      stiffness: 200,
+                      damping: 20,
+                    },
+                  },
+                }}
+                transition={{ duration: 0.3 }}
+                initial="closed"
+                animate={isOpen ? "open" : "closed"}
+                ref={containerRef}
+                exit="closed"
+              >
+                <motion.button
+                  className="text-white md:text-sm text-lg md:px-3 px-10 font-bold hover:drop-shadow-lg rounded-full"
+                  whileHover={{ scale: [null, 1.4, 1.3] }}
+                  transition={{ duration: 0.3 }}
+                  // style={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
+                >
+                  About
+                </motion.button>
+              </motion.nav>
+              <motion.nav
+                className="flex justify-evenly pb-4 items-center w-full pt-3"
                 variants={{
                   open: {
                     y: 0,
@@ -203,7 +259,7 @@ const LayoutNav = () => {
                     },
                   },
                   closed: {
-                    y: "-80%",
+                    y: "-70%",
                     opacity: 0,
                     transition: {
                       type: "spring",
@@ -219,54 +275,16 @@ const LayoutNav = () => {
                 exit="closed"
               >
                 <motion.button
-                  className="text-white md:text-sm text-lg md:px-1 px-10 py-1 font-bold hover:drop-shadow-lg rounded-full"
+                  className="text-white md:text-sm text-lg md:px-3 px-10 font-bold hover:drop-shadow-lg rounded-full"
                   whileHover={{ scale: [null, 1.4, 1.3] }}
                   transition={{ duration: 0.3 }}
-                >
-                  About
-                </motion.button>
-              </motion.nav>
-              <motion.nav
-                className="flex justify-evenly pb-4 items-center w-full"
-                // style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
-                variants={{
-                  open: {
-                    y: 0,
-                    opacity: 1,
-                    transition: {
-                      type: "spring",
-                      stiffness: 150,
-                      damping: 20,
-                      delay: 0.3,
-                    },
-                  },
-                  closed: {
-                    y: "-80%",
-                    opacity: 0,
-                    transition: {
-                      type: "spring",
-                      stiffness: 200,
-                      damping: 20,
-                    },
-                  },
-                }}
-                transition={{ duration: 0.3 }}
-                initial="closed"
-                animate={isOpen ? "open" : "closed"}
-                ref={containerRef}
-                exit="closed"
-              >
-                <motion.button
-                  className="text-white md:text-sm text-lg md:px-1 px-10 py-1 font-bold hover:drop-shadow-lg rounded-full"
-                  whileHover={{ scale: [null, 1.4, 1.3] }}
-                  transition={{ duration: 0.3 }}
+                  // style={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
                 >
                   Projects
                 </motion.button>
               </motion.nav>
               <motion.nav
-                className="flex justify-evenly pb-4 items-center w-full"
-                // style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
+                className="flex justify-evenly pb-4 items-center w-full pt-3"
                 variants={{
                   open: {
                     y: 0,
@@ -275,11 +293,11 @@ const LayoutNav = () => {
                       type: "spring",
                       stiffness: 150,
                       damping: 20,
-                      delay: 0.4,
+                      delay: 0.25,
                     },
                   },
                   closed: {
-                    y: "-80%",
+                    y: "-70%",
                     opacity: 0,
                     transition: {
                       type: "spring",
@@ -295,9 +313,10 @@ const LayoutNav = () => {
                 exit="closed"
               >
                 <motion.button
-                  className="text-white md:text-sm text-lg md:px-1 px-10 py-1 font-bold hover:drop-shadow-lg rounded-full"
+                  className="text-white md:text-sm text-lg md:px-3 px-10 font-bold hover:drop-shadow-lg rounded-full"
                   whileHover={{ scale: [null, 1.4, 1.3] }}
                   transition={{ duration: 0.3 }}
+                  // style={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
                 >
                   Contact
                 </motion.button>
