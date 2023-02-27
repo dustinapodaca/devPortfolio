@@ -1,8 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Root from './Routes/root';
+import LayoutNav from './Components/LayoutNav';
+import Footer from './Components/Footer';
 import Error from './Components/ErrorHandler';
+import { PortfolioProvider } from './Context/ContextProvider';
 import './index.css'
+
+import { AnimatePresence, motion } from "framer-motion";
 
 //router imports
 import {
@@ -22,6 +27,12 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <PortfolioProvider>
+      <LayoutNav />
+      <AnimatePresence mode='wait' >
+        <RouterProvider router={router} />
+      </AnimatePresence>
+    </PortfolioProvider>
+    <Footer />
   </React.StrictMode>,
 );

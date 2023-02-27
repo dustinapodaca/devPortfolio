@@ -2,60 +2,19 @@ import { useRef } from 'react';
 import { motion, AnimatePresence, useCycle } from 'framer-motion';
 // import iconTriangle from '../../assets/noun-triangle-3105557.svg';
 
-const Path = (props: any) => (
-  <motion.path
-    fill="transparent"
-    strokeWidth="3"
-    stroke="hsl(0, 0%, 18%)"
-    strokeLinecap="round"
-    {...props}
-  />
-);
+// const Path = (props: any) => (
+//   <motion.path
+//     fill="transparent"
+//     strokeWidth="3"
+//     stroke="hsl(0, 0%, 18%)"
+//     strokeLinecap="round"
+//     {...props}
+//   />
+// );
 
 const LayoutNav = () => {
   const [isOpen, toggleOpen] = useCycle(false, true);
   const containerRef = useRef(null);
-
-  // const sidebarVariants = {
-  //   open: {
-  //     y: 0,
-  //     opacity: 1,
-  //     transition: {
-  //       type: "spring",
-  //       stiffness: 150,
-  //       damping: 20,
-  //       // delay: 0.2,
-  //     },
-  //   },
-  //   closed: {
-  //     y: "-100%",
-  //     opacity: 0,
-  //     transition: {
-  //       type: "spring",
-  //       stiffness: 200,
-  //       damping: 20,
-  //     },
-  //   },
-  // };
-
-  // const toggleVariants = {
-  //   open: {
-  //     rotate: 180,
-  //   },
-  //   closed: {
-  //     rotate: 0,
-  //   },
-  // };
-
-  // const toggleVariants = {
-  //   open: { rotate: 45 },
-  //   closed: { rotate: 0 },
-  // };
-
-  // const crossVariants = {
-  //   open: { opacity: 1 },
-  //   closed: { opacity: 0 },
-  // };
 
   return (
     <>
@@ -321,6 +280,7 @@ const LayoutNav = () => {
                   Contact
                 </motion.button>
               </motion.nav>
+              
             </motion.div>
           </>
         )}
@@ -331,34 +291,44 @@ const LayoutNav = () => {
 
 export default LayoutNav;
 
-// return (
-//     <>
-//       <div className="fixed z-50 top-0 left-0 right-0 px-4 py-2 bg-gray-800">
-//         <motion.div
-//           className="flex justify-between items-center w-full"
-//           variants={sidebarVariants}
-//           initial="closed"
-//           animate={isOpen ? "open" : "closed"}
-//           exit="closed"
-//         >
-//           <p className="text-white px-4">Home</p>
-//           <p className="text-white px-4">About</p>
-//           <p className="text-white px-4">Projects</p>
-//           <p className="text-white px-4">Contact</p>
-//         </motion.div>
-//         <button
-//           className="focus:outline-none"
-//           onClick={() => setIsOpen(!isOpen)}
-//         >
-//           <motion.span
-//             className="text-white"
-//             variants={toggleVariants}
-//             animate={isOpen ? "open" : "closed"}
-//           >
-//             &#9776;
-//           </motion.span>
-//         </button>
-//       </div>
-//     </>
-//   );
-// };
+
+  // const sidebarVariants = {
+  //   open: {
+  //     y: 0,
+  //     opacity: 1,
+  //     transition: {
+  //       type: "spring",
+  //       stiffness: 150,
+  //       damping: 20,
+  //       // delay: 0.2,
+  //     },
+  //   },
+  //   closed: {
+  //     y: "-100%",
+  //     opacity: 0,
+  //     transition: {
+  //       type: "spring",
+  //       stiffness: 200,
+  //       damping: 20,
+  //     },
+  //   },
+  // };
+
+  // const toggleVariants = {
+  //   open: {
+  //     rotate: 180,
+  //   },
+  //   closed: {
+  //     rotate: 0,
+  //   },
+  // };
+
+  // const toggleVariants = {
+  //   open: { rotate: 45 },
+  //   closed: { rotate: 0 },
+  // };
+
+  // const crossVariants = {
+  //   open: { opacity: 1 },
+  //   closed: { opacity: 0 },
+  // };
